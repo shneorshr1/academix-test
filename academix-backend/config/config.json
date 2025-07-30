@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "Shneor22",
+    "database": "academix_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "Shneor11",
+    "database": "academix_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "Shneor11",
+    "database": "academix_prod",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
