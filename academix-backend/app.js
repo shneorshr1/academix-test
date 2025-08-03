@@ -1,17 +1,17 @@
 const express = require('express');
 const app = express();
-const userRoutes = require('./routes/user.routes');
-const domainRoutes = require('./routes/domain.routes');
-const courseRoutes = require('./routes/course.routes');
-const courseBatchRoutes = require('./routes/courseBatch.routes');
-const axisRoutes = require('./routes/axis.routes'); 
-const taskGroupRoutes = require('./routes/taskGroup.routes');
-const taskRoutes = require('./routes/task.routes');
-const taskAssignmentRoutes = require('./routes/taskAssignment.routes');
-const roleAssignmentRoutes = require('./routes/roleAssignment.routes');
-const teamMemberRoutes = require('./routes/teamMember.routes');
-const teamRoutes = require('./routes/team.routes');
-const roleRoutes = require('./routes/role.routes');
+const userRoutes = require('./src/routes/user.routes');
+const domainRoutes = require('./src/routes/domain.routes');
+const courseRoutes = require('./src/routes/course.routes');
+const courseBatchRoutes = require('./src/routes/courseBatch.routes');
+const axisRoutes = require('./src/routes/axis.routes'); 
+const taskGroupRoutes = require('./src/routes/taskGroup.routes');
+const taskRoutes = require('./src/routes/task.routes');
+const taskAssignmentRoutes = require('./src/routes/taskAssignment.routes');
+const roleAssignmentRoutes = require('./src/routes/roleAssignment.routes');
+const teamMemberRoutes = require('./src/routes/teamMember.routes');
+const teamRoutes = require('./src/routes/team.routes');
+const roleRoutes = require('./src/routes/role.routes');
 
 const PORT = process.env.PORT || 3000;
 

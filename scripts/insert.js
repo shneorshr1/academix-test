@@ -142,9 +142,11 @@ if (userCount === 0) {
 }
   
 const rolesData = [
-  { code: 'instructor', name_he: 'מדריך', name_en: 'Instructor' },
-  { code: 'student', name_he: 'חניך', name_en: 'Student' },
-  { code: 'admin', name_he: 'מנהל', name_en: 'Admin' }
+  { code: 'ADMIN', name_he: 'אדמין', name_en: 'admin' },
+  { code: 'DOMAIN_MANAGER', name_he: 'מנהל תחום', name_en: 'domain manager' },
+  { code: 'COURSE_COMMANDER', name_he: 'מפקד קורס', name_en: 'course commander' },
+  { code: 'TEAM_COMMANDER', name_he: 'מפקד צוות', name_en: 'team commander' },
+  { code: 'STUDENT', name_he: 'חניך', name_en: 'Student' },
 ];
 
 for (const role of rolesData) {
@@ -161,72 +163,6 @@ for (const role of rolesData) {
 }
 
 
-const roleAssignmentsData = [
-  {
-    userEmail: 'shneor@example.com',
-    roleCode: 'admin',
-    scopeType: 'batch',
-    scopeName: 'בסמח 1'
-  },
-  {
-    userEmail: 'natan@example.com',
-    roleCode: 'instructor',
-    scopeType: 'batch',
-    scopeName: 'מחזור כ"ב'
-  },
-  {
-    userEmail: 'binyamin@example.com',
-    roleCode: 'student',
-    scopeType: 'batch',
-    scopeName: 'בסמח 1'
-  },
-  {
-    userEmail: 'yfat@example.com',
-    roleCode: 'student',
-    scopeType: 'batch',
-    scopeName: 'מחזור כ"ב'
-  },
-  {
-    userEmail: 'alis@example.com',
-    roleCode: 'student',
-    scopeType: 'batch',
-    scopeName: 'בסמח 1'
-  }
-];
-
- for (const item of roleAssignmentsData) {
-  const user = await User.findOne({ where: { email: item.userEmail } });
-  const role = await Role.findOne({ where: { code: item.roleCode } });
-
-  let scope = await CourseBatch.findOne({ where: { name: item.scopeName } });
-
-  if (!user || !role || !scope) {
-    console.warn(`🔴 Skipping RoleAssignment for ${item.userEmail} – missing user/role/scope`);
-    continue;
-  }
-
-
-  await RoleAssignment.findOrCreate({
-    where: {
-      user_id: user.id,
-      role_code: role.code,
-      scope_type: item.scopeType,
-      scope_id: scope.id
-    },
-     defaults: {
-      user_id: user.id,
-      role_code: role.code,
-      scope_type:  item.scopeType,
-      scope_id: scope.id
-    }
-  });
-
-
-
-
-
-}
- 
 const teams = [
   { name: 'צוות פיתוח צניפים', course_batch_id: 1 },
   { name: 'צוות עיצוב ', course_batch_id: 1 },
@@ -242,7 +178,6 @@ for (const team of teams) {
     }
   });
 }
-
 
 
 const teamMembers = [
@@ -272,6 +207,108 @@ for (const member of teamMembers) {
     }
   });
 }
+
+
+
+const roleAssignmentsData = [
+  {
+    userEmail: 'shneor@example.com',
+    roleCode: 'ADMIN',
+    scopeType: 'system',
+    scopeName: 'global'
+  },
+  {
+    userEmail: 'natan@example.com',
+    roleCode: 'DOMAIN_MANAGER',
+    scopeType: 'domain',
+    scopeName: 'תחום פיתוח'
+  },
+  {
+    userEmail: 'binyamin@example.com',
+    roleCode: 'COURSE_COMMANDER',
+    scopeType: 'batch',
+    scopeName: 'בסמח 1'
+  },
+  {
+    userEmail: 'yfat@example.com',
+    roleCode: 'TEAM_COMMANDER',
+    scopeType: 'team',
+    scopeName: 'צוות גפן'
+  },
+  {
+    userEmail: 'alis@example.com',
+    roleCode: 'STUDENT',
+    scopeType: 'TeamMember',
+    scopeName: 'שניאור שרייבר'
+  }
+];
+
+const getScopeModel = (type) => {
+  switch (type) {
+    case 'domain':
+      return Domain;
+    case 'batch':
+      return CourseBatch;
+    case 'team':
+      return Team;
+    case 'TeamMember':
+      return User;
+    case 'system':
+      return null; // אין ישות קונקרטית
+    default:
+      return null;
+  }
+};
+
+for (const item of roleAssignmentsData) {
+  const user = await User.findOne({ where: { email: item.userEmail } });
+  const role = await Role.findOne({ where: { code: item.roleCode } });
+
+  let scopeId = null;
+
+  if (item.scopeType !== 'system' ) {
+    
+    const ScopeModel = getScopeModel(item.scopeType);
+    if (!ScopeModel) {
+      console.warn(`❌ Unknown scopeType: ${item.scopeType}`);
+      continue;
+    }
+
+ 
+     const  scopeRecord = await ScopeModel.findOne({ where: { name: item.scopeName } });
+
+    if (!scopeRecord) {
+      console.warn(`🔴 Missing scope for ${item.userEmail} (scopeType: ${item.scopeType}, name: ${item.scopeName})`);
+      continue;
+    }
+
+    scopeId = scopeRecord.id;
+  }
+
+  if (!user || !role) {
+    console.warn(`🔴 Missing user or role for ${item.userEmail}`);
+    continue;
+  }
+
+  await RoleAssignment.findOrCreate({
+    where: {
+      user_id: user.id,
+      role_code: role.code,
+      scope_type: item.scopeType,
+      scope_id: scopeId
+    },
+    defaults: {
+      user_id: user.id,
+      role_code: role.code,
+      scope_type: item.scopeType,
+      scope_id: scopeId
+    }
+  });
+}
+
+ 
+
+
 
 const taskAssignments = [
   {

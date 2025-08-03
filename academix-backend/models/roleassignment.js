@@ -29,13 +29,13 @@ module.exports = (sequelize, DataTypes) => {
         field: 'role_code'
       },
       scope_type: {
-        type: DataTypes.ENUM('system', 'domain', 'course', 'batch'),
+        type: DataTypes.ENUM('system', 'domain', 'batch','team','TeamMember'),
         allowNull: false,
         field: 'scope_type'
       },
       scope_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         field: 'scope_id'
       }
     },
