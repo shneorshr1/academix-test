@@ -1,18 +1,45 @@
-'use strict';
-const { Model } = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class RoleAssignment extends Model {
     static associate(models) {
-    
-
-      RoleAssignment.belongsTo(models.User, { foreignKey: 'user_id' });
+      RoleAssignment.belongsTo(models.User, {
+        foreignKey: "user_id",
+      });
 
       RoleAssignment.belongsTo(models.Role, {
-        foreignKey: 'role_code',
-        targetKey: 'code'
+        foreignKey: "role_code",
+        targetKey: "code",
       });
-      
+
+      // scope_type = 'domain'
+      RoleAssignment.belongsTo(models.Domain, {
+        as: "domain",
+        foreignKey: "scope_id",
+        constraints: false,
+      });
+
+      // scope_type = 'batch'
+      RoleAssignment.belongsTo(models.CourseBatch, {
+        as: "batch",
+        foreignKey: "scope_id",
+        constraints: false,
+      });
+
+      // scope_type = 'team'
+      RoleAssignment.belongsTo(models.Team, {
+        as: "team",
+        foreignKey: "scope_id",
+        constraints: false,
+      });
+
+      // scope_type = 'TeamMember'
+      RoleAssignment.belongsTo(models.TeamMember, {
+        as: "teamMember",
+        foreignKey: "scope_id",
+        constraints: false,
+      });
     }
   }
 
@@ -21,28 +48,28 @@ module.exports = (sequelize, DataTypes) => {
       user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        field: 'user_id'
+        field: "user_id",
       },
       role_code: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: 'role_code'
+        field: "role_code",
       },
       scope_type: {
-        type: DataTypes.ENUM('system', 'domain', 'batch','team','TeamMember'),
+        type: DataTypes.ENUM("system", "domain", "batch", "team", "TeamMember"),
         allowNull: false,
-        field: 'scope_type'
+        field: "scope_type",
       },
       scope_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        field: 'scope_id'
-      }
+        field: "scope_id",
+      },
     },
     {
       sequelize,
-      modelName: 'RoleAssignment',
-      tableName: 'RoleAssignments'
+      modelName: "RoleAssignment",
+      tableName: "RoleAssignments",
     }
   );
 

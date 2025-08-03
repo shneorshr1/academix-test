@@ -12,9 +12,18 @@ const roleAssignmentRoutes = require('./src/routes/roleAssignment.routes');
 const teamMemberRoutes = require('./src/routes/teamMember.routes');
 const teamRoutes = require('./src/routes/team.routes');
 const roleRoutes = require('./src/routes/role.routes');
+const permissionsRoutes = require('./src/routes/permissions.routes');
 
-const PORT = process.env.PORT || 3000;
+const cors = require('cors');
 
+const PORT = process.env.PORT || 8007;
+
+
+// לפני כל ה־routes
+app.use(cors({
+ origin: ['http://localhost:3000', 'http://localhost:3001'],
+  credentials: true // אם אתה שולח cookies / authorization headers
+}));
 app.use(express.json()); // body parser
 
 // Routes
@@ -30,6 +39,7 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/task-assignments', taskAssignmentRoutes);
 app.use('/api/roleAssignments', roleAssignmentRoutes);
 app.use('/api/teamMembers', teamMemberRoutes);
+app.use('/api/permissions', permissionsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

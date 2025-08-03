@@ -1,21 +1,30 @@
-'use strict';
-const { Model } = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Domain extends Model {
     static associate(models) {
-      Domain.hasMany(models.Course, { foreignKey: 'domainId' });
+      Domain.hasMany(models.Course, { foreignKey: "domainId" });
+      Domain.hasMany(models.RoleAssignment, {
+        as: "roleAssignments",
+        foreignKey: "scope_id",
+        constraints: false, // כי זה scope דינמי
+      });
     }
   }
-  Domain.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+
+  Domain.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      description: DataTypes.TEXT,
     },
-    description: DataTypes.TEXT,
-  }, {
-    sequelize,
-    modelName: 'Domain',
-  });
+    {
+      sequelize,
+      modelName: "Domain",
+    }
+  );
   return Domain;
 };

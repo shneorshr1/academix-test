@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Team.belongsTo(models.CourseBatch, {
         foreignKey: 'course_batch_id',
-        as: 'courseBatch'
       });
       
 

@@ -238,8 +238,8 @@ const roleAssignmentsData = [
   {
     userEmail: 'alis@example.com',
     roleCode: 'STUDENT',
-    scopeType: 'TeamMember',
-    scopeName: 'שניאור שרייבר'
+    scopeType: 'team',
+    scopeName: 'צוות אלחוט-מרום'
   }
 ];
 

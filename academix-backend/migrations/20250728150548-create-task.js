@@ -29,6 +29,21 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
+
+      // ✅ שדות שנלקחו מהמודל שלך:
+      name: {
+        type: Sequelize.STRING(255),
+        allowNull: false
+      },
+      description: {
+        type: Sequelize.TEXT,
+        allowNull: true
+      },
+      repository_kind: {
+        type: Sequelize.ENUM('operational', 'free'),
+        allowNull: false
+      },
+
       estimatedMinutes: {
         type: Sequelize.SMALLINT,
         validate: {
