@@ -3,7 +3,6 @@ import { usePermissionStore } from '../store/permissionStore';
 export const useHasPermission = (roleCode: string, scopeType?: string, scopeId?: number) => {
   const permissions = usePermissionStore((state) => state.permissions);
 
-  console.log(permissions);
   
   return permissions.some((perm) => {
     if (perm.role_code !== roleCode) return false;

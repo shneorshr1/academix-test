@@ -7,8 +7,7 @@ export const useFetchPermissions = () => {
 
   return useQuery('permissions', async () => {
     const { data } = await api.get('/permissions/my');
-    console.log('Fetched permissions:', data);
-    setPermissions(data);
+    // setPermissions(data);
     return data;
   });
 };

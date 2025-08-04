@@ -61,7 +61,7 @@ const scopeIncludes = {
 
 router.get("/my", async (req, res) => {
   try {
-    const userId = req.user?.id || 5;
+    const userId = req.user?.id || 2;
 
     const assignments = await RoleAssignment.findAll({
       where: { user_id: userId },

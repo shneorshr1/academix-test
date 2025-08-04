@@ -13,6 +13,7 @@ const teamMemberRoutes = require('./src/routes/teamMember.routes');
 const teamRoutes = require('./src/routes/team.routes');
 const roleRoutes = require('./src/routes/role.routes');
 const permissionsRoutes = require('./src/routes/permissions.routes');
+const calendarRoutes = require("./src/routes/calendar.routes");
 
 const cors = require('cors');
 
@@ -40,6 +41,8 @@ app.use('/api/task-assignments', taskAssignmentRoutes);
 app.use('/api/roleAssignments', roleAssignmentRoutes);
 app.use('/api/teamMembers', teamMemberRoutes);
 app.use('/api/permissions', permissionsRoutes);
+app.use("/api/calendar", calendarRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

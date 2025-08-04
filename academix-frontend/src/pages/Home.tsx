@@ -11,8 +11,6 @@ export default function Home() {
   const { data: courses, isLoading, isError } = useCourses();
   
   const canManageDomains = useHasPermission('ADMIN', 'system');
-
-  console.log(canManageDomains);
   
   if (isLoading) return <div>טוען קורסים...</div>;
   if (isError) return <div>שגיאה בטעינת קורסים</div>;
@@ -20,7 +18,6 @@ export default function Home() {
   return (
     <div>
       <PermissionList/>
-  
     </div>
   );
 }

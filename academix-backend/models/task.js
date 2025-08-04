@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Task.belongsTo(models.TaskGroup, { foreignKey: 'taskGroupId' });
       Task.belongsTo(models.User, { foreignKey: 'userId' });
+      Task.hasMany(models.TaskAssignment, { foreignKey: "task_id" });
+
+      
     //   Task.belongsTo(models.User, { foreignKey: 'userId' });
 
       // בהמשך נוסיף גם קשרים ל־TaskAssignment

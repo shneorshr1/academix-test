@@ -1,4 +1,5 @@
 export function getPermissionDisplay(permission: any) {
+  
   switch (permission.scope_type) {
     case 'domain':
       return {

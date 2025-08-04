@@ -10,10 +10,14 @@ type Permission = {
 
 type PermissionState = {
   permissions: Permission[];
+  selectedPermission: Permission | null;
   setPermissions: (permissions: Permission[]) => void;
+  setSelectedPermission: (permission: Permission) => void;
 };
 
 export const usePermissionStore = create<PermissionState>((set) => ({
   permissions: [],
-  setPermissions: (permissions) => set({ permissions })
+  selectedPermission: null,
+  setPermissions: (permissions) => set({ permissions }),
+  setSelectedPermission: (permission) => set({ selectedPermission: permission })
 }));

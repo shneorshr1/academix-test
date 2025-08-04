@@ -1,7 +1,8 @@
 import React from 'react';
-import { Layout, Menu} from 'antd';
+import { Layout, Menu} from 'antd/';
 import './Topbar.css';
 import { useNavigate } from 'react-router-dom';
+import { RoleSelect } from '../RoleSelect';
 
 const { Header } = Layout;
 
@@ -23,6 +24,7 @@ const Topbar: React.FC = () => {
 
   return (
     <Header className="topbar">
+       <RoleSelect />
       <Menu
         theme="light"
         mode="horizontal"

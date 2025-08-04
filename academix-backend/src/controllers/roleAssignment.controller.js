@@ -3,11 +3,16 @@ const { RoleAssignment } = require('../../models');
 
 module.exports = {
     async getAll(req, res) {
+
+
+      
       try {
-        const data = await RoleAssignment.findAll();
-        res.json(data);
+        const userId = req.user?.id || 3; // כרגע לבדיקה
+        const roles = await RoleAssignment.findAll({ where: { user_id: userId } });
+        res.json(roles);
       } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error(err);
+        res.status(500).json({ error: "Failed to load role assignments" });
       }
     },
   
