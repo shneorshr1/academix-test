@@ -1,12 +1,6 @@
-// import { useQuery } from "@tanstack/react-query";
-
-// import { fetchCalendarTasks } from "./calendar.api";
 import { useQuery } from 'react-query';
 import { useCalendarStore } from "../store/calendarStore";
-import  api from "../api/axios";
-
-
-
+import api from "../api/axios";
 
 export interface CalendarTask {
   id: number;
@@ -32,13 +26,16 @@ export const fetchCalendarTasks = async (start: string, end: string): Promise<Ca
   return data;
 };
 
-
 export const useCalendarTasks = (start: string, end: string) => {
   const setTasks = useCalendarStore((s) => s.setTasks);
 
   return useQuery({
     queryKey: ["calendarTasks", start, end],
     queryFn: () => fetchCalendarTasks(start, end),
-    onSuccess: (data) => setTasks(data)
+    onSuccess: (data) => setTasks(data),
+    refetchOnWindowFocus: false,
+    staleTime: Infinity, // ✅ ייחשב תמיד טרי
+    cacheTime: Infinity, // ✅ שמור לנצח כל עוד האפליקציה רצה
   });
+  
 };

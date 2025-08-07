@@ -4,10 +4,26 @@ import { usePermissionStore } from '../store/permissionStore';
 
 export const useFetchPermissions = () => {
   const setPermissions = usePermissionStore((state) => state.setPermissions);
+  const setSelectedPermission = usePermissionStore((state) => state.setSelectedPermission);
 
-  return useQuery('permissions', async () => {
-    const { data } = await api.get('/permissions/my');
-    // setPermissions(data);
-    return data;
-  });
+  const userId = 3;
+
+
+  return useQuery(
+    ['permissions', userId],
+    async () => {
+      const { data } = await api.get(`/permissions/my/${userId}`);
+      return data;
+    },
+    {
+      enabled: !!userId,
+      refetchOnWindowFocus: false, 
+      staleTime: Infinity,            
+      cacheTime: Infinity,             
+      onSuccess: (data) => {
+        setPermissions(data);
+        setSelectedPermission(data[0]);
+      },
+    }
+  );
 };

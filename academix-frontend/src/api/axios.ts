@@ -6,4 +6,10 @@ const api = axios.create({
   withCredentials: true
 });
 
+api.interceptors.request.use((config) => {
+  console.log('➡️ Request:', config.method?.toUpperCase(), config.url);
+  return config;
+});
+
+
 export default api;

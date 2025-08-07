@@ -1,16 +1,24 @@
 export function getPermissionDisplay(permission: any) {
   
-  switch (permission.scope_type) {
+  
+  console.log(permission);
+  
+  switch (permission?.scope_type) {
+    case 'system':
+      return {
+        label: `${permission.system.length + " קורסים ישנם   " || ''}`,
+        role:"אדמין"
+      };
     case 'domain':
       return {
         label: `תחום: ${permission.domain?.name || ''}`,
-        role:"דומיין"
+        role:"מפקד תחום"
       };
       
-      case 'batch':
+      case 'course':
         return {
-          label: `מחזור: ${permission.batch?.name || ''} | קורס: ${permission.batch?.Course?.name || ''} | תחום: ${permission.batch?.Course?.Domain?.name || ''}`,
-          role:"מפקד קורס על מחזור"
+          label: `מחזור: ${permission.course?.CourseBatches[0].name || ''} | קורס: ${permission.course?.name || ''} | תחום: ${permission.course?.Domain?.name || ''}`,
+          role:"מפקד קורס"
         };
         
         case 'team':

@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Axis.belongsTo(models.Course, { foreignKey: 'courseId' });
       Axis.hasMany(models.TaskGroup, { foreignKey: 'axisId' });
+      Axis.belongsTo(models.Team, {
+        foreignKey: "team_id",
+        allowNull: true,
+      });
       // בהמשך אפשר להוסיף גם hasMany ל־TaskGroups
     }
   }
@@ -20,7 +24,11 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    team_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   }, {
     sequelize,
     modelName: 'Axis',

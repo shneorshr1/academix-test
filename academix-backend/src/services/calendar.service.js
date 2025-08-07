@@ -13,14 +13,7 @@ const {
 } = require("../../models");
 
 async function getCalendarTasks(userId, startDate, endDate) {
-  // 1. שליפת ההרשאות של המשתמש
-  const roleAssignments = await RoleAssignment.findAll({
-    where: { user_id: userId }
-  });
 
-  console.log("User scopes:", roleAssignments.map(r => r.scope_type));
-
-  // 2. שליפה בסיסית של כל הטסקים בטווח
   return Task.findAll({
     where: {
         createdAt: {

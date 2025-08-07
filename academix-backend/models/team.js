@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
       Team.belongsTo(models.CourseBatch, {
         foreignKey: 'course_batch_id',
       });
+      Team.hasMany(models.Axis, {
+        foreignKey: "team_id",
+      });
       
 
       Team.hasMany(models.TeamMember, {

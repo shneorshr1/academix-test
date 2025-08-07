@@ -226,8 +226,8 @@ const roleAssignmentsData = [
   {
     userEmail: 'binyamin@example.com',
     roleCode: 'COURSE_COMMANDER',
-    scopeType: 'batch',
-    scopeName: 'בסמח 1'
+    scopeType: 'course',
+    scopeName: '17 שמע'
   },
   {
     userEmail: 'yfat@example.com',
@@ -247,8 +247,8 @@ const getScopeModel = (type) => {
   switch (type) {
     case 'domain':
       return Domain;
-    case 'batch':
-      return CourseBatch;
+    case 'course':
+      return Course;
     case 'team':
       return Team;
     case 'TeamMember':

@@ -7,7 +7,7 @@ const CourseList = () => {
   const selectedCourse = useCourseStore((state) => state.selectedCourse);
   const setSelectedCourse = useCourseStore((state) => state.setSelectedCourse);
 
-  console.log(selectedCourse);
+  // console.log(selectedCourse);
   
   if (isLoading) return <p>טוען קורסים...</p>;
   if (isError || !courses) return <p>שגיאה בטעינת הקורסים</p>;

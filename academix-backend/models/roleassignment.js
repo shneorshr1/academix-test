@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
         field: "role_code",
       },
       scope_type: {
-        type: DataTypes.ENUM("system", "domain", "batch", "team", "TeamMember"),
+        type: DataTypes.ENUM("system", "domain", "course", "team", "TeamMember"),
         allowNull: false,
         field: "scope_type",
       },

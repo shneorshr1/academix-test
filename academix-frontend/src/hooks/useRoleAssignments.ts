@@ -12,6 +12,7 @@ export const useRoleAssignments = () => {
         return data;
       },
       onSuccess: (data) => {
+        // console.log(data);
         setPermissions(data);
       },
     });
