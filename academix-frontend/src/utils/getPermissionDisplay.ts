@@ -1,7 +1,7 @@
 export function getPermissionDisplay(permission: any) {
   
   
-  console.log(permission);
+  // console.log(permission);
   
   switch (permission?.scope_type) {
     case 'system':

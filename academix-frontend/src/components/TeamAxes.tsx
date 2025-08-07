@@ -11,27 +11,18 @@ type Axis = {
 };
 
 type Props = {
-  teamId: number;
+  teamId: number | null;
 };
 
 const TeamAxes: React.FC<Props> = ({ teamId }) => {
 
-    console.log(teamId);
-    
+   const { data: axes } =  useFetchAxes({ scope_type: "team", scope_id :teamId  });
+    const teamAxes = axes
 
-    const { data: axes } = useFetchAxes();
-
-    console.log(axes);
-    
-
-  const teamAxes = axes/* ?.filter((axis:any) => axis.team_id === teamId); */
-
-  console.log(teamAxes);
-  
   if (teamAxes?.length === 0) return null;
 
   return (
-    <div style={{ paddingRight: "1rem", marginTop: "1rem" }}>
+    <div style={{ paddingRight: "1rem", marginTop: "1rem",background:'pink' }}>
       <h4 style={{ fontWeight: "bold" }}>🧭 צירים לצוות זה:</h4>
       <ul style={{ paddingRight: "1rem" }}>
         {teamAxes?.map((axis:any) => (

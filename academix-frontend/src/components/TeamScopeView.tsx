@@ -4,12 +4,10 @@ import TeamAxes from "./TeamAxes";
 export const TeamScopeView = ({ permission }: { permission: any }) => {
   const team = permission.team;
 
+  console.log(team);
   
   if (!team) return <div>לא נמצא מידע על הצוות</div>;
 
-  console.log(team);
-  console.log(team.courseBatch?.name);
-  
   return (
     <div>
       <h2>צוות: {team.name}</h2>

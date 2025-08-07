@@ -20,7 +20,7 @@ export const PermissionList = () => {
         <h1>{role}</h1>
         {label}
         <div style={{ marginTop: '2rem' }}>
-          <h2>משימות:</h2>
+        
           {selectedPermission.scope_type === "course" && (
             <CourseScopeView permission={selectedPermission} />
           )}

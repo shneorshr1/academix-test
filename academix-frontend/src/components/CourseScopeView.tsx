@@ -2,6 +2,8 @@
 import TeamAxes from "./TeamAxes";
 
 export const CourseScopeView = ({ permission }: { permission: any }) => {
+
+  
   return (
     <>
       {permission.course?.CourseBatches?.map((batch: any) => (

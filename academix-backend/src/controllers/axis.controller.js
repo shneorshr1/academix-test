@@ -56,8 +56,6 @@ exports.getAxesByPermission = async (req, res) => {
   try {
     const { scopeType, scopeId } = req.query;
 
-    
-    console.log(scopeType);
     let where = {};
 
     if (scopeType === 'course') {
@@ -71,7 +69,7 @@ exports.getAxesByPermission = async (req, res) => {
 
       where = {
         courseId: { [Op.in]: courseIds },
-        teamId: null, // גלובלי בלבד
+        teamId: null,
       };
     } else  if (scopeType === 'team') {
       const team = await Team.findByPk(scopeId, {
@@ -89,7 +87,6 @@ exports.getAxesByPermission = async (req, res) => {
     
       const courseBatchId = team.CourseBatch.id;
     
-      console.log(courseBatchId);
       where = {
         courseId: courseBatchId,
         [Op.or]: [
@@ -102,7 +99,7 @@ exports.getAxesByPermission = async (req, res) => {
     }
 
     const axes = await Axis.findAll({ where });
-    console.log(axes);
+    // console.log(axes);
     res.json(axes);
 
   } catch (error) {

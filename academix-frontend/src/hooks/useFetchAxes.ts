@@ -1,36 +1,33 @@
-// hooks/useFetchAxes.ts
+// import { useQuery } from "@tanstack/react-query";
 import { useQuery } from 'react-query';
+import axios from "axios";
 import api from '../api/axios';
-import { usePermissionStore } from '../store/permissionStore';
 
-export const useFetchAxes = () => {
-  const selectedPermission = usePermissionStore((state) => state.selectedPermission);
+type ScopeType = "system" | "domain" | "course" | "team";
 
-  console.log(selectedPermission);
+interface Permission {
+  scope_type: ScopeType;
+  scope_id: number | null;
+}
+
+export const useFetchAxes = (permission: Permission | null) => {
+  return useQuery({
+    queryKey: ["axes", permission],
+    queryFn: async () => {
+      if (!permission) return [];
+
+      const { scope_type, scope_id } = permission;
+
   
-  return useQuery(
-    ['axes', selectedPermission],
-    async () => {
-      const { data } = await api.get('/axes/by-permission', {
+      const { data } = await api.get("/axes/by-permission", {
         params: {
-          scopeType: selectedPermission?.scope_type,
-          scopeId: selectedPermission?.scope_id
-        }
+          scopeType: scope_type,
+          scopeId: scope_id,
+        },
       });
 
-      console.log(data);
-      
       return data;
     },
-    {
-      enabled: !!selectedPermission, // לא לרוץ עד שיש הרשאה נבחרת
-      refetchOnWindowFocus: false,
-      staleTime: 1000 * 60 * 5, 
-      onError: (error) => {
-        console.error(error);
-        return { error: "Failed to fetch axis" };
-      }
-    
-    }
-  );
+    enabled: !!permission,
+  });
 };

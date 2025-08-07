@@ -4,8 +4,6 @@ const { Op } = require('sequelize');
 
 async function getAxesForPermission(permission) {
 
-console.log(permission);
-
   const courseId = permission.scope_type === 'course'
     ? permission.scope_id
     : permission.scope_type === 'domain'
