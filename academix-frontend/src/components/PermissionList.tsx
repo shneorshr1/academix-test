@@ -7,11 +7,12 @@ import TeamAxes from "./TeamAxes";
 import { TeamScopeView } from "./TeamScopeView";
 
 export const PermissionList = () => {
-  useCourses();
+  // useCourses();
 
   const selectedPermission = usePermissionStore((state) => state.selectedPermission);
   const { label, role } = getPermissionDisplay(selectedPermission);
 
+  
   if (!selectedPermission) return <div>לא נבחרה הרשאה</div>;
 
   return (
