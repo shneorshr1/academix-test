@@ -1,4 +1,3 @@
-import { useRoleAssignments } from "../hooks/useRoleAssignments";
 import { usePermissionStore } from "../store/permissionStore";
 import { Select } from "antd/";
 

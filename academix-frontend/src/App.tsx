@@ -4,9 +4,10 @@ import './App.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import Home from './pages/Home';
-import AppRoutes from './routes/AppRoutes';
+import {AppRoutes} from './routes/AppRoutes';
 import { ConfigProvider } from 'antd/';
 import heIL from 'antd/locale/he_IL';
+import { RouterProvider } from 'react-router-dom';
 
 const queryClient = new QueryClient();
 
@@ -15,7 +16,7 @@ function App() {
     <ConfigProvider direction="rtl" locale={heIL}>
 
   <QueryClientProvider client={queryClient}>
-<AppRoutes/>
+  <RouterProvider router={AppRoutes} />
     </QueryClientProvider>
     </ConfigProvider>
   );

@@ -1,10 +1,4 @@
-import { useEffect } from 'react';
-import CourseList from '../components/CourseList';
-import Layout from '../components/layout/Layout';
-import { PermissionList } from '../components/PermissionList';
-import { useCourses } from '../hooks/useCourses';
 import { useFetchPermissions } from '../hooks/useFetchPermissions';
-import { useHasPermission } from '../hooks/useHasPermission';
 import { usePermissionStore } from '../store/permissionStore';
 import { getPermissionDisplay } from '../utils/getPermissionDisplay';
 

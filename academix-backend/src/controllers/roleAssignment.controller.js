@@ -4,8 +4,6 @@ const { RoleAssignment } = require('../../models');
 module.exports = {
     async getAll(req, res) {
 
-
-      
       try {
         const userId = req.user?.id || 3; 
         
