@@ -1,10 +1,8 @@
-// components/TeamScopeView.tsx
 import TeamAxes from "./TeamAxes";
 
 export const TeamScopeView = ({ permission }: { permission: any }) => {
   const team = permission.team;
 
-  // console.log(team);
   
   if (!team) return <div>לא נמצא מידע על הצוות</div>;
 

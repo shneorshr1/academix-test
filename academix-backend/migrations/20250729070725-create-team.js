@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'CourseBatches', // חשוב! בדיוק כמו שם הטבלה!
+          model: 'CourseBatches',
           key: 'id'
         },
         onUpdate: 'CASCADE',

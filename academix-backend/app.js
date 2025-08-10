@@ -20,14 +20,12 @@ const cors = require('cors');
 const PORT = process.env.PORT || 8007;
 
 
-// לפני כל ה־routes
 app.use(cors({
  origin: ['http://localhost:3000', 'http://localhost:3001'],
-  credentials: true // אם אתה שולח cookies / authorization headers
+  credentials: true 
 }));
-app.use(express.json()); // body parser
+app.use(express.json()); 
 
-// Routes
 app.use('/api/domains', domainRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/courseBatch', courseBatchRoutes);

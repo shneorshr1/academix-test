@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "team_id",
         allowNull: true,
       });
-      // בהמשך אפשר להוסיף גם hasMany ל־TaskGroups
     }
   }
   Axis.init({

@@ -29,8 +29,6 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
-
-      // ✅ שדות שנלקחו מהמודל שלך:
       name: {
         type: Sequelize.STRING(255),
         allowNull: false

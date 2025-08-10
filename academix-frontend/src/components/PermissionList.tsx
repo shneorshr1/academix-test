@@ -1,4 +1,3 @@
-// components/PermissionList.tsx
 import { useCourses } from "../hooks/useCourses";
 import { usePermissionStore } from "../store/permissionStore";
 import { getPermissionDisplay } from "../utils/getPermissionDisplay";
@@ -7,13 +6,13 @@ import TeamAxes from "./TeamAxes";
 import { TeamScopeView } from "./TeamScopeView";
 
 export const PermissionList = () => {
-  // useCourses();
 
   const selectedPermission = usePermissionStore((state) => state.selectedPermission);
   const { label, role } = getPermissionDisplay(selectedPermission);
 
   
   if (!selectedPermission) return <div>לא נבחרה הרשאה</div>;
+
 
   return (
     <div>

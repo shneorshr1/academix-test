@@ -1,11 +1,9 @@
 const { Domain, Course, CourseBatch, sequelize,Axis,TaskGroup ,Task,User,Role,RoleAssignment,Team,TeamMember,TaskAssignment} = require('../academix-backend/models');
 
 async function insertData() {
-  // await sequelize.sync({ force: true });
   await sequelize.sync({ force: true });
 
 
-  // === Domains ===
   const domains = [];
   const domainData = [
     { name: 'תחום פיתוח', description: 'עולם התוכנה של הבסיס' },
@@ -20,7 +18,6 @@ async function insertData() {
     domains.push(domain);
   }
 
-  // === Courses ===
   const courses = [];
   const courseData = [
     {
@@ -45,7 +42,6 @@ async function insertData() {
     courses.push(c);
   }
 
-  // === CourseBatches ===
   const courseBatchData = [
     {
       courseId: courses[0].id,
@@ -181,18 +177,14 @@ for (const team of teams) {
 
 
 const teamMembers = [
-  // Alpha Team (id: 1)
   { team_id: 1, user_id: 1, member_role: 'instructor' },
   { team_id: 1, user_id: 2, member_role: 'student' },
 
-  // Beta Team (id: 2)
   { team_id: 2, user_id: 3, member_role: 'instructor' },
 
-  // Gamma Team (id: 3)
   { team_id: 3, user_id: 4, member_role: 'student' },
   { team_id: 3, user_id: 1, member_role: 'assistant' },
 
-  // Delta Team (id: 4)
   { team_id: 4, user_id: 2, member_role: 'viewer' },
 ];
 
@@ -254,7 +246,7 @@ const getScopeModel = (type) => {
     case 'TeamMember':
       return User;
     case 'system':
-      return null; // אין ישות קונקרטית
+      return null;
     default:
       return null;
   }

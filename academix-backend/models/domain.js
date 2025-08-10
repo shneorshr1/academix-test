@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       Domain.hasMany(models.RoleAssignment, {
         as: "roleAssignments",
         foreignKey: "scope_id",
-        constraints: false, // כי זה scope דינמי
+        constraints: false,
       });
     }
   }

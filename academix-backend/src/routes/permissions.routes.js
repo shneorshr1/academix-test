@@ -6,7 +6,6 @@ router.get("/my/:userId", async (req, res) => {
   try {
     const userId = Number(req.params.userId) || 3
     const detailedAssignments = await getPermissionsForUser(userId);
-    console.log(detailedAssignments);
     
     res.json(detailedAssignments);
   } catch (err) {

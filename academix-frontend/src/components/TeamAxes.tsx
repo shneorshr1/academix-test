@@ -1,4 +1,3 @@
-// components/TeamAxes.tsx
 import React from "react";
 import { useFetchAxes } from "../hooks/useFetchAxes";
 

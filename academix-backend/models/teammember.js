@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       TeamMember.hasMany(models.TaskAssignment, {
         foreignKey: 'user_id',
-        // as: 'taskAssignments'
+    
       });
      
     }

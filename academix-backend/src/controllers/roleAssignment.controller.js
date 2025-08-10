@@ -7,7 +7,8 @@ module.exports = {
 
       
       try {
-        const userId = req.user?.id || 3; // כרגע לבדיקה
+        const userId = req.user?.id || 3; 
+        
         const roles = await RoleAssignment.findAll({ where: { user_id: userId } });
         res.json(roles);
       } catch (err) {

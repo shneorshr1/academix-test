@@ -1,4 +1,3 @@
-// components/CourseScopeView.tsx
 import TeamAxes from "./TeamAxes";
 
 export const CourseScopeView = ({ permission }: { permission: any }) => {

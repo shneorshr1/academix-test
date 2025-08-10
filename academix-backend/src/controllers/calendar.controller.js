@@ -14,7 +14,6 @@ async function getCalendarTasksController(req, res) {
       
       const tasks = await getCalendarTasks(userId, start, end);
 
-      console.log(tasks);
       res.json(tasks);
     } catch (err) {
       console.error("Error fetching calendar tasks:", err);

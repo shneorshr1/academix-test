@@ -4,13 +4,13 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.addColumn('Axes', 'team_id', {
       type: Sequelize.INTEGER,
-      allowNull: true, // כדי לא לשבור דאטה קיים
+      allowNull: true, 
       references: {
         model: 'Teams',
         key: 'id'
       },
       onUpdate: 'CASCADE',
-      onDelete: 'SET NULL' // או 'CASCADE' אם אתה רוצה למחוק גם את הציר אם הצוות נמחק
+      onDelete: 'SET NULL' 
     });
   },
 

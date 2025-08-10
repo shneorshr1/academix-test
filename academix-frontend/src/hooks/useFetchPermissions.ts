@@ -6,6 +6,7 @@ export const useFetchPermissions = () => {
   const setPermissions = usePermissionStore((state) => state.setPermissions);
   const setSelectedPermission = usePermissionStore((state) => state.setSelectedPermission);
 
+
   const userId = 3;
 
 

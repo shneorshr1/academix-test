@@ -4,7 +4,6 @@ module.exports = (sequelize, DataTypes) => {
   class TaskGroup extends Model {
     static associate(models) {
       TaskGroup.belongsTo(models.Axis, { foreignKey: 'axisId' });
-      // בהמשך נוסיף: TaskGroup.hasMany(models.Task) וכו'
     }
   }
   TaskGroup.init({

@@ -28,7 +28,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// PUT /api/users/:id
+
 exports.updateUser = async (req, res) => {
   try {
     const { name, email } = req.body;
@@ -42,7 +42,7 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-// DELETE /api/users/:id
+
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id);

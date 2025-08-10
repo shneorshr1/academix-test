@@ -7,10 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       Task.belongsTo(models.User, { foreignKey: 'userId' });
       Task.hasMany(models.TaskAssignment, { foreignKey: "task_id" });
 
-      
-    //   Task.belongsTo(models.User, { foreignKey: 'userId' });
-
-      // בהמשך נוסיף גם קשרים ל־TaskAssignment
     }
   }
   Task.init({
@@ -39,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      // field: 'user_id',
+  
       references: {
         model: 'Users',
         key: 'id'

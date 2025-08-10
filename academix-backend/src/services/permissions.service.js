@@ -4,6 +4,7 @@ const { getSystemData, getDomainData, getCourseData, getTeamData } = require("..
 const getPermissionsForUser = async (userId) => {
   const assignments = await RoleAssignment.findAll({ where: { user_id: userId }, raw: true });
 
+  
   return await Promise.all(assignments.map(async (assignment) => {
     switch (assignment.scope_type) {
       case "system":

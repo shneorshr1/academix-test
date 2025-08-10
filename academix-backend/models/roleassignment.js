@@ -13,28 +13,23 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: "code",
       });
 
-      // scope_type = 'domain'
+
       RoleAssignment.belongsTo(models.Domain, {
         as: "domain",
         foreignKey: "scope_id",
         constraints: false,
       });
 
-      // scope_type = 'batch'
       RoleAssignment.belongsTo(models.CourseBatch, {
         as: "batch",
         foreignKey: "scope_id",
         constraints: false,
       });
-
-      // scope_type = 'team'
       RoleAssignment.belongsTo(models.Team, {
         as: "team",
         foreignKey: "scope_id",
         constraints: false,
       });
-
-      // scope_type = 'TeamMember'
       RoleAssignment.belongsTo(models.TeamMember, {
         as: "teamMember",
         foreignKey: "scope_id",

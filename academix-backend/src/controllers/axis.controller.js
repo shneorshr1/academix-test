@@ -61,7 +61,7 @@ exports.getAxesByPermission = async (req, res) => {
     if (scopeType === 'course') {
       where = {
         courseId: parseInt(scopeId),
-        team_id: null, // גלובלי לקורס
+        team_id: null, 
       };
     } else if (scopeType === 'domain') {
       const courses = await Course.findAll({ where: { domain_id: parseInt(scopeId) } });
@@ -99,7 +99,7 @@ exports.getAxesByPermission = async (req, res) => {
     }
 
     const axes = await Axis.findAll({ where });
-    // console.log(axes);
+
     res.json(axes);
 
   } catch (error) {

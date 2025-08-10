@@ -1,4 +1,3 @@
-// scripts/runSeed.js
 const insertData = require('../scripts/insert');
 
 insertData()

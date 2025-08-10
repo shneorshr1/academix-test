@@ -14,14 +14,14 @@ export const useCourses = () => {
   return useQuery<Course[]>(
     'courses',
     async () => {
-      const { data } = await api.get('/courses');
+      const { data } = await api.get('/courses');   
       setCourses(data);
       return data;
     },
     {
-      refetchOnWindowFocus: false, // 🛑 אל תשלוף שוב כשחוזרים לטאב
-      staleTime: Infinity,         // 🧠 המידע נחשב תמיד טרי
-      cacheTime: Infinity          // 💾 שמור את המידע לאורך כל חיי האפליקציה
+      refetchOnWindowFocus: false, 
+      staleTime: Infinity,        
+      cacheTime: Infinity        
     }
   );
 };

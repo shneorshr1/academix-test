@@ -1,6 +1,6 @@
 import { useRoleAssignments } from "../hooks/useRoleAssignments";
 import { usePermissionStore } from "../store/permissionStore";
-import { Select } from "antd";
+import { Select } from "antd/";
 
 export const RoleSelect = () => {
     const { permissions, selectedPermission, setSelectedPermission } = usePermissionStore();

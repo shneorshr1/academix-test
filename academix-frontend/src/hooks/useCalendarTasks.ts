@@ -34,8 +34,8 @@ export const useCalendarTasks = (start: string, end: string) => {
     queryFn: () => fetchCalendarTasks(start, end),
     onSuccess: (data) => setTasks(data),
     refetchOnWindowFocus: false,
-    staleTime: Infinity, // ✅ ייחשב תמיד טרי
-    cacheTime: Infinity, // ✅ שמור לנצח כל עוד האפליקציה רצה
+    staleTime: Infinity,
+    cacheTime: Infinity, 
   });
   
 };

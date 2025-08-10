@@ -1,4 +1,3 @@
-// queries/permissionsQueries.js
 const {
   Domain,
   Course,

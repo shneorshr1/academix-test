@@ -7,7 +7,6 @@ const CourseList = () => {
   const selectedCourse = useCourseStore((state) => state.selectedCourse);
   const setSelectedCourse = useCourseStore((state) => state.setSelectedCourse);
 
-  // console.log(selectedCourse);
   
   if (isLoading) return <p>טוען קורסים...</p>;
   if (isError || !courses) return <p>שגיאה בטעינת הקורסים</p>;
@@ -37,7 +36,6 @@ const CourseList = () => {
           <p><strong>שם:</strong> {selectedCourse.name}</p>
           <p><strong>ID:</strong> {selectedCourse.id}</p>
           <p><strong>Domain ID:</strong> {selectedCourse?.domainId}</p>
-          {/* תוכל להוסיף שדות נוספים */}
         </div>
       )}
     </div>
